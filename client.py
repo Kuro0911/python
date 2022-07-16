@@ -1,12 +1,21 @@
 #TCP client
+# import socket
+# s = socket.socket()
+# host = socket.gethostname()
+# port = 9999
+# s.connect(host, port)
+
+# print(s.recv(1024))
+# s.close()
+
+#udp
+
 import socket
+s = socket.socket(socket.AF_INET , socket.SOCK_DGRAM)
 
-s = socket.socket()
 host = socket.gethostname()
-port = 3000
+port = 9999
 
-s.connect((host, port))
+msg = 'test'
 
-print(s.recv(1024))
-
-s.close()
+s.sendto(msg , (host , port))

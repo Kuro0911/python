@@ -1,16 +1,28 @@
 #TCP Server
+
+# import socket
+# s = socket.socket(socket.AF_INET, type=socket.SOCK_STREAM)
+# host = socket.gethostname()
+# port = 9999
+
+# s.bind(host , port)
+# s.listen(5)
+# while(True):
+#     conn,adrr = s.connect()
+#     print(f'got conn from {adrr}')
+#     conn.send("aaaaa")
+#     conn.close()
+
+
+#UDP Server
 import socket
+s = socket.socket(socket.AF_INET , socket.SOCK_DGRAM)
 
-s = socket.socket()
 host = socket.gethostname()
-port = 3000
+port = 9999
 
-s.bind((host, port))
+s.bind(host, port)
 
-s.listen(5)
-
-while True:
-    conn,addr = s.accept()
-    print('got conn from ', addr)
-    conn.send("server: hi bruda")
-    conn.close()
+while(True):
+    data,adr = s.recvfrom(1024)
+    print(data , adr)
