@@ -2,7 +2,10 @@ from ast import pattern
 from asyncio.windows_events import NULL
 from cgitb import small
 from distutils.command.bdist_msi import PyDialog
+import imp
 import math
+import multiprocessing
+from re import X
 '''
 print('hello world')
 
@@ -98,4 +101,117 @@ def hof(func1 , func2, x):
 
 x = hof(cube,sq,2)
 print(x)
+
+
+import _thread
+import time
+
+def print_time(name, delay):
+    count = 0
+    while count < 10:
+        time.sleep(delay)
+        count += 1
+        print(f"{name} : {time.ctime(time.time())}")
+
+try: 
+    _thread.start_new_thread(print_time, ('one' , 0, ))
+    _thread.start_new_thread(print_time, ('two' , 1, ))
+except: 
+    print("nigga pause")
+
+from multiprocessing import Process
+
+def moj(x):
+    for i in x:
+        if i!=7:
+            print(f'moj {i*i*i}')
+
+def sui(x):
+    for i in x:
+        if i == 7:
+            print(f'suiiiii')
+
+if __name__ == '__main__':
+    x = [7, 6, 7, 1, 2]
+    p1 = Process(target=moj, args=(x,))
+    p2 = Process(target=sui, args=(x,)) 
+    p1.start()
+    p2.start()
+    p1.join()
+    p2.join()
+    print('done')
+
+
+from multiprocessing import Process,Pipe
+def saySui(con):
+    con.send("suiiiiiiiiiiiiiiiiiii")
+    con.close()
+if __name__ == '__main__':
+    Pcon,Ccon = Pipe()
+    p = Process(target=saySui, args=(Ccon,))
+    p.start()
+    print(Pcon.recv())
+    p.join()
+
+from multiprocessing import Queue,Process
+
+def Sui(x,q):
+    for i in x:
+        if i % 2 == 0:
+            q.put('suii')
+
+if __name__ == '__main__':
+    q = Queue()
+    x = [2, 3, 1, 2]
+    p = Process(target=Sui, args=(x,q,))
+    p.start()
+    p.join()
+    while q.qsize():
+        print(q.get())
+
+
+from multiprocessing import Pool
+
+def cube(x):
+    return x*x*x
+
+if __name__ == '__main__':
+    p = Pool(processes=4)
+    x = [2,4,8,16]
+    out = p.map(cube,x)
+    print(f'out : {out}')
+
+
+
+from threading import Thread
+
+def square(X):
+    for i in x:
+        print(i*i)
+
+if __name__ == "__main__":
+    x = [1,2,3,4,3]
+    t = Thread(target=square,args=(x,))
+    t.start()
+    t.join()
+
+
+
+from concurrent import futures
+import threading as t
+import time
+def sq(n):
+    print('{}: sleeping {}'.format(
+        t.current_thread().name,n)
+    )
+    time.sleep(n / 10)
+    print('{}: done with {}'.format(
+    t.current_thread().name,n))
+    return n / 10
+
+ex = futures.ThreadPoolExecutor(max_workers=2)
+res = ex.map(sq, range(5,0,-1))
+print(f'out : {res}')
+
+
 '''
