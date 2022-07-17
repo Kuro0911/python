@@ -1,4 +1,7 @@
+from ast import pattern
 from asyncio.windows_events import NULL
+from cgitb import small
+from distutils.command.bdist_msi import PyDialog
 import math
 '''
 print('hello world')
@@ -64,4 +67,35 @@ cv2.imshow( "Example", img )
 cv2.waitKey( 10000 )
 
 cv2.destroyAllWindows() # work with cv2.waitKey(...)
+
+
+from kanren import var,fact,run
+from kanren.assoccomm import eq_assoccomm as eq
+from kanren.assoccomm import associative, commutative
+
+add = 'add'
+mul = 'mul'
+
+fact(commutative , add)
+fact(commutative , mul)
+fact(associative , add)
+fact(associative , mul)
+
+a,b,c = var('a') ,var('b'), var('c')
+expr = (mul, (add , 1 , 2) , 4)
+pat = (add , (mul , a , b) , c)
+
+run(0, (a,b,c) , eq(expr, pat))
+
+def sq(x):
+    return x*x
+def cube(x):
+    return sq(x)*x
+def ans(x, func):
+    return func(x)
+def hof(func1 , func2, x):
+    return func1(x)*func2(x)
+
+x = hof(cube,sq,2)
+print(x)
 '''
