@@ -53,9 +53,9 @@ window.onkey(quit, 'q')
 window.listen()
 window.mainloop()
 
-'''
 
 # tkinter
+
 import tkinter as tk
 from tkinter import ttk
 window = tk.Tk()
@@ -65,4 +65,8 @@ window.title('GUI')
 lable = ttk.Lable(window, text = 'hello world').pack()
     
 window.mainloop()
+
+
+'''
+
 

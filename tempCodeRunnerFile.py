@@ -1,12 +1,2 @@
-#TCP client
-import socket
-
-s = socket.socket()
-host = socket.gethostname()
-port = 3000
-
-s.connect((host, port))
-
-print(s.recv(1024))
-
-s.close()
+    out = t.map(sui,range(5, 0 , -1))
+    print(f"out : {out}")
