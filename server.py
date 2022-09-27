@@ -1,4 +1,4 @@
-#TCP Server
+# TCP Server
 
 # import socket
 # s = socket.socket(socket.AF_INET, type=socket.SOCK_STREAM)
@@ -14,15 +14,15 @@
 #     conn.close()
 
 
-#UDP Server
+# UDP Server
 import socket
-s = socket.socket(socket.AF_INET , socket.SOCK_DGRAM)
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 host = socket.gethostname()
 port = 9999
 
-s.bind(host, port)
+s.bind((host, port))
 
 while(True):
-    data,adr = s.recvfrom(1024)
-    print(data , adr)
+    data, adr = s.recvfrom(1024)
+    print(data, adr)

@@ -1,4 +1,4 @@
-#TCP client
+# TCP client
 # import socket
 # s = socket.socket()
 # host = socket.gethostname()
@@ -8,14 +8,14 @@
 # print(s.recv(1024))
 # s.close()
 
-#udp
+# udp
 
 import socket
-s = socket.socket(socket.AF_INET , socket.SOCK_DGRAM)
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 host = socket.gethostname()
 port = 9999
 
-msg = 'test'
+msg = "test"
 
-s.sendto(msg , (host , port))
+s.sendto(msg.encode(), (host, port))
